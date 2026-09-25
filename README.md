@@ -1,5 +1,7 @@
 # Jev bench
 
+<img width="1368" height="850" alt="jev-example" src="https://github.com/user-attachments/assets/9dacb1b9-280e-40d0-9aac-8bd7306f14a4" />
+
 A small playground for TypeSafe's [Jev](https://docs.typesafe.ai/introduction) model, served at https://jev.prestonj.com.
 
 TypeSafe's own API is invite-only, but Cloudflare Workers AI hosts the same model as `typesafe/jev`. This Worker wraps that binding so you can build Noul, Choice, and Score questions, see the exact input sent to the model, and read the answers with latency, token, and cost stats.
