@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jev bench</title>
+    <meta name="description" content="Build typed questions for TypeSafe's Jev model, see the exact request, and read its calibrated answers with latency and cost." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2323272B'/%3E%3Crect x='6' y='14' width='20' height='4' rx='2' fill='%23F1F2EC' opacity='.35'/%3E%3Crect x='6' y='14' width='14' height='4' rx='2' fill='%23D99A00'/%3E%3Crect x='19' y='9' width='2' height='14' rx='1' fill='%23F1F2EC'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="masthead-title">
+        <h1>Jev bench</h1>
+        <p>Write typed questions, check the exact request, and read Jev's calibrated answers.</p>
+      </div>
+      <nav class="masthead-links">
+        <a href="https://docs.typesafe.ai/primitives" target="_blank" rel="noopener">Question types</a>
+        <a href="https://docs.typesafe.ai/confidence" target="_blank" rel="noopener">Confidence</a>
+        <a href="https://developers.cloudflare.com/ai/models/typesafe/jev/" target="_blank" rel="noopener">Cloudflare model page</a>
+      </nav>
+    </header>
+
+    <main class="workbench">
+      <section class="panel panel-build" aria-labelledby="build-title">
+        <header class="panel-head"><h2 id="build-title" class="panel-title">Build</h2></header>
+        <div id="builder" class="builder"></div>
+        <footer class="run-bar">
+          <button id="run" type="button" class="run-button">Run</button>
+          <kbd id="run-hint"></kbd>
+        </footer>
+      </section>
+
+      <section class="panel panel-request" aria-labelledby="request-title">
+        <header class="panel-head">
+          <h2 id="request-title" class="panel-title">Request</h2>
+          <div id="request-tabs" class="segmented" role="group" aria-label="Request format">
+            <button type="button" data-tab="body" aria-pressed="true">Input</button>
+            <button type="button" data-tab="curl" aria-pressed="false">curl</button>
+          </div>
+          <button id="copy-request" type="button" class="text-button">Copy</button>
+        </header>
+        <p class="panel-note">What the Worker passes to <code>env.AI.run("typesafe/jev", input)</code>.</p>
+        <div id="request-problems" class="request-problems" aria-live="polite"></div>
+        <pre class="code"><code id="request-code"></code></pre>
+      </section>
+
+      <section class="panel panel-response" aria-labelledby="response-title">
+        <header class="panel-head">
+          <h2 id="response-title" class="panel-title">Response</h2>
+          <div id="response-tabs" class="segmented" role="group" aria-label="Response format">
+            <button type="button" data-tab="formatted" aria-pressed="true">Formatted</button>
+            <button type="button" data-tab="raw" aria-pressed="false">Raw</button>
+          </div>
+        </header>
+        <dl id="stats" class="stats"></dl>
+        <div id="response-body" class="response-body" aria-live="polite"></div>
+        <section class="history" aria-labelledby="history-title">
+          <div class="history-head">
+            <h3 id="history-title">Runs</h3>
+            <button id="clear-history" type="button" class="text-button">Clear</button>
+          </div>
+          <ol id="history" class="history-list"></ol>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

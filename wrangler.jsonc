@@ -1,0 +1,32 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "jev-playground",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-24",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+  "ai": {
+    "binding": "AI",
+    "remote": true
+  },
+  // Cloudflare Access guards only the custom domain, so the workers.dev and
+  // preview URLs stay off; otherwise they would be an unauthenticated way in.
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [{ "pattern": "jev.prestonj.com", "custom_domain": true }],
+  "vars": {
+    // From the Access application: Zero Trust > Access controls > Applications.
+    "ACCESS_TEAM_DOMAIN": "super-heart-b5e0.cloudflareaccess.com",
+    "ACCESS_AUD": "07fc3d539e8adef7dabd71cf3fc3b92de9ca776656199aafc88028bb70e69ff7",
+    "JEV_USD_PER_MILLION_INPUT_TOKENS": "0.042",
+    "JEV_USD_PER_MILLION_OUTPUT_TOKENS": "0"
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  }
+}
